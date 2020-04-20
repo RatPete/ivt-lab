@@ -16,7 +16,11 @@ public class TorpedoStore {
 
   public TorpedoStore(int numberOfTorpedos){
     this.torpedoCount = numberOfTorpedos;
+<<<<<<< HEAD
     //This is a new useless comment
+=======
+    //This is a different type of non functional comment.
+>>>>>>> branch-B
     // update failure rate if it was specified in an environment variable
     String failureEnv = System.getenv("IVT_RATE");
     if (failureEnv != null){
