@@ -5,14 +5,14 @@ package hu.bme.mit.spaceship;
 */
 public class GT4500 implements SpaceShip {
 
-  private TorpedoStore primaryTorpedoStore;
-  private TorpedoStore secondaryTorpedoStore;
+  private ITorpedoStore primaryTorpedoStore;
+  private ITorpedoStore secondaryTorpedoStore;
 
   private boolean wasPrimaryFiredLast = false;
 
-  public GT4500() {
-    this.primaryTorpedoStore = new TorpedoStore(10);
-    this.secondaryTorpedoStore = new TorpedoStore(10);
+  public GT4500(ITorpedoStore primary, ITorpedoStore secondary) {
+    this.primaryTorpedoStore = primary;
+    this.secondaryTorpedoStore = secondary;
   }
 
   public boolean fireLaser(FiringMode firingMode) {
@@ -77,13 +77,14 @@ public class GT4500 implements SpaceShip {
         break;
 
       case ALL:
+      default:
+      
         // try to fire both of the torpedo stores
         if(!primaryTorpedoStore.isEmpty()&&!secondaryTorpedoStore.isEmpty()){
           firingSuccess=primaryTorpedoStore.fire(1)&&secondaryTorpedoStore.fire(1);
           wasPrimaryFiredLast=true;
-        }    
-
-        break;
+        }
+        break; 
     }
 
     return firingSuccess;
